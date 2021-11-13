@@ -11,7 +11,7 @@ const AllOrders = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://quiet-depths-28219.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setAllOrders(data))
     }, [])
@@ -20,7 +20,7 @@ const AllOrders = () => {
 
     const handleDelete = id => {
 
-        fetch(`http://localhost:5000/cancelOrder/${id}`, {
+        fetch(`https://quiet-depths-28219.herokuapp.com/cancelOrder/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -43,7 +43,7 @@ const AllOrders = () => {
 
         setStatus(newStatus)
         console.log(status)
-        fetch(`http://localhost:5000/statusUpdate/${id}`, {
+        fetch(`https://quiet-depths-28219.herokuapp.com/statusUpdate/${id}`, {
             method: 'PUT',
             headers: { "content-type": "application/json" },
             body: JSON.stringify(status)

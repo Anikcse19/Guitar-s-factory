@@ -20,7 +20,7 @@ const AddProducts = () => {
         const products = {
             ...newProducts,
         }
-        fetch('http://localhost:5000/guitars', {
+        fetch('https://quiet-depths-28219.herokuapp.com/guitars', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(products)
