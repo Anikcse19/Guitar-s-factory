@@ -6,6 +6,7 @@ import Footer from './pages/Footer/Footer';
 import Home from './pages/Home/Home/Home';
 import Login from './pages/LogIn/LogIn/LogIn';
 import Register from './pages/LogIn/Register/Register';
+import NotFound from './pages/NotFound/NotFound';
 import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 import Products from './pages/Products/Products';
 import PurchaseOrder from './pages/PurchaseOrder/PurchaseOrder';
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route path='/register'>
               <Register></Register>
+            </Route>
+            <Route path='*'>
+              <NotFound></NotFound>
             </Route>
           </Switch>
           <Footer></Footer>

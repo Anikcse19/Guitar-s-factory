@@ -8,10 +8,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
+import { Container } from '@mui/material';
 
 const Navigation = () => {
     const { user, logout } = useAuth()
     return (
+
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
@@ -28,6 +30,7 @@ const Navigation = () => {
                         Guitar's Factory
                     </Typography>
                     <Link to='/home' style={{ textDecoration: 'none' }}><Button style={{ color: 'white' }}>Home</Button></Link>
+                    {/* <Link to='/products' style={{ textDecoration: 'none' }}><Button style={{ color: 'white' }}>Explore Guitar's</Button></Link> */}
                     {user.email ?
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <Link to='/dashboard' style={{ textDecoration: 'none' }}><Button style={{ color: 'white' }}>Dashboard</Button></Link>
@@ -42,6 +45,7 @@ const Navigation = () => {
                 </Toolbar>
             </AppBar>
         </Box>
+
     );
 };
 

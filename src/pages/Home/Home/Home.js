@@ -1,9 +1,11 @@
-import { Button, Container, Grid, Paper, Typography } from '@mui/material';
+import { Button, Card, Container, Grid, Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../../../shared/Navigation/Navigation';
+import Faq from '../Faq/Faq';
 import HomeBanner from '../HomeBanner/HomeBanner';
+import Reviews from '../Reviews/Reviews';
 
 const Home = () => {
     const [guitars, setGuitars] = useState([])
@@ -20,42 +22,45 @@ const Home = () => {
 
             <HomeBanner></HomeBanner>
             <h2>GUITAR'S ARE ON TRENDING</h2>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                {
-                    guitars.slice(0, 6).map(guitar =>
-                        <Grid item xs={12} md=
-                            {6}>
-                            <Container >
+            <Container >
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    {
+                        guitars.slice(0, 6).map(guitar =>
+                            <Grid item xs={12} md=
+                                {4}>
+
                                 <Box
                                     sx={{
                                         display: 'flex',
                                         flexWrap: 'wrap',
                                         '& > :not(style)': {
                                             m: 5,
-                                            width: 500,
+                                            maxWidth: 400,
                                             height: 550,
                                         },
                                     }}
                                 >
 
-                                    <Paper elevation={3}>
-                                        <img style={{ width: "400px", border: '2px solid gray', marginTop: '10px' }} src={guitar.img} alt="" />
-                                        <Typography sx={{ fontWeight: '700' }} variant='h5'>{guitar.guitarName}</Typography>
-                                        <Typography variant='h6'>{guitar.speciality}</Typography>
+                                    <Card elevation={3}>
+                                        <img style={{ maxWidth: "300px", border: '2px solid gray', marginTop: '10px' }} src={guitar.img} alt="" />
+                                        <Typography sx={{ fontWeight: '700' }} variant='h6'>{guitar.guitarName}</Typography>
+                                        <Typography variant='body1'>{guitar.speciality}</Typography>
                                         <Typography variant='h5'>$ {guitar.price}</Typography>
-                                        <Typography variant='body1'>{guitar.desc}</Typography>
-                                        <Link to={`./purchase/${guitar._id}`} style={{ textDecoration: 'none' }}><Button sx={{ mt: 2 }} variant='contained'>Purchase Now</Button></Link>
+                                        <Typography variant='body1'>{guitar.desc.slice(0, 180)}</Typography>
+                                        <Link to={`./purchase/${guitar._id}`} style={{ textDecoration: 'none' }}><Button sx={{ mt: 1 }} variant='contained'>Purchase Now</Button></Link>
 
-                                    </Paper>
+                                    </Card>
                                 </Box>
-                            </Container>
-                        </Grid>
 
-                    )
-                }
-            </Grid>
+                            </Grid>
 
+                        )
+                    }
+                </Grid>
+            </Container>
 
+            <Reviews></Reviews>
+            <Faq></Faq>
         </div>
     );
 };

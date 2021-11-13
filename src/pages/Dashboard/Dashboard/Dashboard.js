@@ -29,6 +29,8 @@ import AllOrders from '../AllOrders/AllOrders';
 import AddProducts from '../AddProducts/AddProducts';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import ManageProducts from './ManageProducts/ManageProducts';
+import AddReview from './AddReview/AddReview';
+import AdminRoute from '../../PrivateRoute/AdminRoute/AdminRoute';
 
 const drawerWidth = 240;
 
@@ -96,12 +98,14 @@ function Dashboard(props) {
                     <Typography variant="h6" noWrap component="div">
                         DASHBOARD
                     </Typography>
-                    {/* <Link to='/home' style={{ textDecoration: 'none' }}><Button style={{ color: 'white', fontSize: 13 }}>Home</Button></Link> */}
+                    <Link to='/home' style={{ textDecoration: 'none', marginLeft: '10rem' }}><Button style={{ color: 'white', fontSize: 13 }}>Home</Button></Link>
                     {!admin ? <Box>
-                        <Link to={`${url}/payment`} style={{ textDecoration: 'none', marginLeft: '10rem' }}><Button style={{ color: 'white', fontSize: 13 }}>PayMent</Button></Link>
+                        <Link to={`${url}/payment`} style={{ textDecoration: 'none' }}><Button style={{ color: 'white', fontSize: 13 }}>PayMent</Button></Link>
                         <Link to={path} style={{ textDecoration: 'none' }}><Button style={{ color: 'white', fontSize: 13 }}>My Orders</Button></Link>
+                        <Link to={`${url}/addReview`} style={{ textDecoration: 'none' }}><Button style={{ color: 'white', fontSize: 13 }}>Add a Review</Button></Link>
+
                     </Box> :
-                        <Box><Link to={path} style={{ textDecoration: 'none', marginLeft: '10rem' }}><Button style={{ color: 'white', fontSize: 13 }}>Manage all orders</Button></Link>
+                        <Box><Link to={path} style={{ textDecoration: 'none' }}><Button style={{ color: 'white', fontSize: 13 }}>Manage all orders</Button></Link>
                             <Link to={`${url}/addproducts`} style={{ textDecoration: 'none' }}><Button style={{ color: 'white', fontSize: 13 }}>Add a products</Button></Link>
                             <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none' }}><Button style={{ color: 'white', fontSize: 13 }}>Make Admin</Button></Link>
                             <Link to={`${url}/manageProducts`} style={{ textDecoration: 'none' }}><Button style={{ color: 'white', fontSize: 13 }}>Manage Products</Button></Link></Box>}
@@ -124,15 +128,18 @@ function Dashboard(props) {
                 <Route exact path={`${url}/payment`}>
                     <Payment></Payment>
                 </Route>
-                <Route path={`${url}/manageProducts`}>
+                <AdminRoute path={`${url}/manageProducts`}>
                     <ManageProducts></ManageProducts>
+                </AdminRoute>
+                <Route path={`${url}/addReview`}>
+                    <AddReview></AddReview>
                 </Route>
-                <Route path={`${url}/addproducts`}>
+                <AdminRoute path={`${url}/addproducts`}>
                     <AddProducts></AddProducts>
-                </Route>
-                <Route path={`${url}/makeAdmin`}>
+                </AdminRoute>
+                <AdminRoute path={`${url}/makeAdmin`}>
                     <MakeAdmin></MakeAdmin>
-                </Route>
+                </AdminRoute>
                 {!admin ? <Route exact path={path}>
                     <MyOrders></MyOrders>
                 </Route> :

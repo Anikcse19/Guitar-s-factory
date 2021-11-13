@@ -5,6 +5,7 @@ import admin from '../../../images/admin.png'
 
 const AllOrders = () => {
     const [allOrders, setAllOrders] = useState([])
+    const [status, setStatus] = useState('')
 
 
 
@@ -18,6 +19,7 @@ const AllOrders = () => {
 
 
     const handleDelete = id => {
+
         fetch(`http://localhost:5000/cancelOrder/${id}`, {
             method: "DELETE"
         })
@@ -32,6 +34,24 @@ const AllOrders = () => {
                         const remaining = allOrders.filter(pd => pd._id !== id)
                         setAllOrders(remaining)
                     }
+                }
+            })
+    }
+    console.log(status)
+    const handleReceive = (id) => {
+        const newStatus = 'Approved'
+
+        setStatus(newStatus)
+        console.log(status)
+        fetch(`http://localhost:5000/statusUpdate/${id}`, {
+            method: 'PUT',
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(status)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    // setSuccess(true)
                 }
             })
     }
@@ -66,7 +86,8 @@ const AllOrders = () => {
                                     <TableCell>{allOrder.purchaserPhoneNumber}</TableCell>
                                     <TableCell>{allOrder.status}</TableCell>
                                     <TableCell align="right">{allOrder.Address}</TableCell>
-                                    <TableCell align="right"><Button variant='contained' sx={{ mr: 2 }} onClick={() => handleDelete(allOrder._id)}>Cancel</Button><Button variant='contained'>Receive</Button></TableCell>
+                                    <TableCell align="right"><Button variant='contained' sx={{ mr: 2 }} onClick={() => handleDelete(allOrder._id)}>Cancel</Button>
+                                        <Button onBlur={() => handleReceive(allOrder._id)} variant='contained'>Receive</Button></TableCell>
 
 
                                 </TableRow>

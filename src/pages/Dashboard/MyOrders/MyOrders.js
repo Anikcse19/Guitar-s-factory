@@ -48,6 +48,7 @@ const MyOrders = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>
+                            <TableCell>Prdouct key</TableCell>
                             <TableCell>Email</TableCell>
                             <TableCell>Contact</TableCell>
                             <TableCell>Condition</TableCell>
@@ -64,6 +65,9 @@ const MyOrders = () => {
                             >
                                 <TableCell component="th" scope="row">
                                     {order.name}
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {order._id}
                                 </TableCell>
                                 <TableCell>{order.email}</TableCell>
                                 <TableCell>{order.purchaserPhoneNumber}</TableCell>

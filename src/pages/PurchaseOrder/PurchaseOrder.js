@@ -136,7 +136,7 @@ const PurchaseOrder = () => {
                                 name='purchaserPhoneNumber'
                                 onBlur={handleOnBlur}
 
-                                defaultValue='Phone Number'
+                                placeholder='Phone Number'
                             />
                             <TextField
                                 sx={{ width: "90%", m: 1 }}
@@ -146,7 +146,7 @@ const PurchaseOrder = () => {
                                 onBlur={handleOnBlur}
                                 name='Address'
 
-                                defaultValue="Your Address"
+                                placeholder="Your Address"
                             />
                             <Button type='submit' variant='contained'>Submit</Button>
 
